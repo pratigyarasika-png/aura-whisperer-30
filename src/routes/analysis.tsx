@@ -4,14 +4,17 @@ import {
   Database,
   FileSpreadsheet,
   FileUp,
+  Globe,
   Loader2,
   Play,
   Sparkles,
   Table2,
+  Terminal,
   Trash2,
+  TrendingUp,
   WandSparkles,
 } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 import { ChartsPanel } from "@/components/analysis/ChartsPanel";
 import { CodeEditor } from "@/components/analysis/CodeEditor";
@@ -298,7 +301,7 @@ function AnalysisWorkspace() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-border bg-mint/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3">
           <Button asChild variant="ghost" size="sm" className="h-9 rounded-full px-3 text-xs">
             <Link to="/">
@@ -306,8 +309,11 @@ function AnalysisWorkspace() {
             </Link>
           </Button>
           <div className="min-w-0">
-            <h1 className="flex items-center gap-2 truncate text-sm font-semibold">
-              <Database className="size-4 text-primary" /> Data &amp; Coding
+            <h1 className="flex items-center gap-2.5 truncate font-display text-sm font-semibold">
+              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-teal-soft text-teal-ink">
+                <Database className="size-4" />
+              </span>
+              Data &amp; Coding
             </h1>
             <p className="truncate text-[11px] text-muted-foreground">
               {active ? `${active.name} · ${active.rows.length.toLocaleString()} rows` : "No dataset loaded yet"}
@@ -322,7 +328,7 @@ function AnalysisWorkspace() {
                 className={cn(
                   "rounded-full px-3 py-1.5 text-xs font-semibold transition-colors",
                   session.tab === tab.id
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-teal-deep text-teal-deep-foreground"
                     : "text-muted-foreground hover:bg-muted",
                 )}
               >
@@ -384,7 +390,7 @@ function AnalysisWorkspace() {
         )}
 
         {session.tab === "data" && (
-          <section className="space-y-5">
+          <ToolCard icon={Globe} title="Scraper & Extractor" subtitle="Drop files in or pull tables straight off the web">
             <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
               <div
                 onDragOver={(event) => {
