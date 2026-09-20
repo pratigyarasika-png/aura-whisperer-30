@@ -584,6 +584,13 @@ function ResearchWorkspace() {
                     </Link>
                   );
                 }
+                if (action.to === "/analysis") {
+                  return (
+                    <Link key={action.label} to="/analysis" className={cls}>
+                      {inner}
+                    </Link>
+                  );
+                }
                 return (
                   <button key={action.label} type="button" className={cls}>
                     {inner}
@@ -698,17 +705,19 @@ function NavGroup({ title, open, children }: { title: string; open: boolean; chi
   return <div>{open && <p className="mb-2 px-3 text-[10px] font-semibold uppercase text-muted-foreground">{title}</p>}<div className="space-y-1">{children}</div></div>;
 }
 
-function NavItem({ icon: Icon, label, open, active = false, to }: { icon: typeof History; label: string; open: boolean; active?: boolean; to?: "/search" | "/write" | "/analyze" | "/analysis" | "/converter" }) {
-  const className = cn("flex h-10 w-full items-center rounded-full text-sm transition-colors", open ? "gap-3 px-3" : "justify-center", active ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground" : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground");
+function NavItem({ icon: Icon, label, open, active = false, to }: { icon: typeof Search; label: string; open: boolean; active?: boolean; to?: "/" | "/search" | "/write" | "/analyze" | "/analysis" | "/converter" }) {
+  const className = cn("flex h-10 w-full items-center rounded-full text-sm transition-colors", open ? "gap-3 px-2" : "justify-center", active ? "bg-mint/70 font-medium text-sidebar-accent-foreground" : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground");
   const inner = (
     <>
-      <Icon className="size-4 shrink-0" />
+      <span className={cn("grid size-8 shrink-0 place-items-center rounded-full bg-mint text-teal-ink", active && "bg-teal-deep text-teal-deep-foreground")}>
+        <Icon className="size-4" />
+      </span>
       {open && <span className="truncate">{label}</span>}
     </>
   );
   if (to) {
     return (
-      <Link to={to} title={!open ? label : undefined} className={className} activeProps={{ className: "bg-sidebar-accent font-medium text-sidebar-accent-foreground" }}>
+      <Link to={to} title={!open ? label : undefined} className={className} activeProps={{ className: "bg-mint/70 font-medium text-sidebar-accent-foreground" }}>
         {inner}
       </Link>
     );
