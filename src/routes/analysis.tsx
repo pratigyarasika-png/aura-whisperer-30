@@ -512,11 +512,11 @@ function AnalysisWorkspace() {
                 )}
               </div>
             )}
-          </section>
+          </ToolCard>
         )}
 
         {session.tab === "code" && (
-          <section className="space-y-4">
+          <ToolCard icon={Terminal} title="Python Runner & Editor" subtitle="Browser Python with pandas, statistics and matplotlib">
             <div className="flex flex-wrap gap-2">
               {PY_TEMPLATES.map((template) => (
                 <button
@@ -547,7 +547,12 @@ function AnalysisWorkspace() {
               >
                 <WandSparkles className="mr-1 size-3.5" /> Generate script
               </Button>
-              <Button size="sm" className="h-9 rounded-full text-xs" onClick={() => void execute()} disabled={!!busy}>
+              <Button
+                size="sm"
+                className="h-9 rounded-full bg-teal-deep text-xs text-teal-deep-foreground hover:bg-teal-deep/90"
+                onClick={() => void execute()}
+                disabled={!!busy}
+              >
                 <Play className="mr-1 size-3.5" /> Run
               </Button>
             </div>
@@ -555,7 +560,9 @@ function AnalysisWorkspace() {
             <CodeEditor value={session.code} onChange={(code) => patch({ code })} />
 
             <div className="rounded-2xl border border-border bg-card p-4">
-              <p className="text-[11px] font-semibold uppercase text-muted-foreground">Execution console</p>
+              <p className="flex items-center gap-2 text-[11px] font-semibold uppercase text-muted-foreground">
+                <Terminal className="size-3.5" /> Execution console
+              </p>
               {!result && !busy && (
                 <p className="mt-2 text-xs text-muted-foreground">
                   Run the script to see printed output, errors and figures. Your dataset is available as{" "}
@@ -568,7 +575,7 @@ function AnalysisWorkspace() {
                     Finished in {(result.durationMs / 1000).toFixed(2)}s
                   </p>
                   {result.stdout && (
-                    <pre className="mt-2 max-h-72 overflow-auto whitespace-pre-wrap rounded-xl bg-muted/50 p-3 font-mono text-[11px] leading-5">
+                    <pre className="mt-2 max-h-72 overflow-auto whitespace-pre-wrap rounded-xl bg-foreground p-3 font-mono text-[11px] leading-5 text-background">
                       {result.stdout}
                     </pre>
                   )}
