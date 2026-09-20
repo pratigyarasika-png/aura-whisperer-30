@@ -1,9 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import {
   Archive,
-  BarChart3,
-  Database,
-  Repeat2,
+  BarChart2,
   Bot,
   BookMarked,
   BookOpenText,
@@ -12,11 +10,13 @@ import {
   ChevronLeft,
   ChevronRight,
   CircleUserRound,
-  FileSearch,
+  Cloud,
+  Code2,
+  FileText,
   FolderKanban,
   Gauge,
   GraduationCap,
-  History,
+  LayoutDashboard,
   Library,
   Menu,
   MessageSquareText,
@@ -25,8 +25,7 @@ import {
   Palette,
   PanelLeftClose,
   PanelLeftOpen,
-  PenLine,
-
+  PenTool,
   Plus,
   Quote,
   Search,
@@ -34,6 +33,7 @@ import {
   Sparkles,
   Square,
   Sun,
+  Terminal,
   WandSparkles,
   X,
 } from "lucide-react";
@@ -148,15 +148,16 @@ const recentSessions = [
 const hubActions: Array<{
   label: string;
   helper: string;
-  icon: typeof FileSearch;
+  icon: typeof Search;
   position: string;
   to?: "/search" | "/write" | "/analyze" | "/analysis" | "/converter";
   withQuery?: boolean;
 }> = [
-  { label: "Find papers", helper: "Search literature", icon: FileSearch, position: "hub-action-top", to: "/search", withQuery: true },
+  { label: "Find papers", helper: "Search literature", icon: Search, position: "hub-action-top", to: "/search", withQuery: true },
   { label: "Map concepts", helper: "Connect findings", icon: Network, position: "hub-action-right", to: "/analyze" },
   { label: "Cite sources", helper: "Build references", icon: Quote, position: "hub-action-bottom", to: "/write" },
-  { label: "Analyze PDF", helper: "Ask documents", icon: BookOpenText, position: "hub-action-left" },
+  { label: "Analyze PDF", helper: "Ask documents", icon: FileText, position: "hub-action-left" },
+  { label: "Data Suite", helper: "Code & statistics", icon: Code2, position: "hub-action-nw", to: "/analysis" },
 ];
 
 
@@ -310,16 +311,15 @@ function ResearchWorkspace() {
 
           <nav aria-label="Research navigation" className="mt-7 space-y-7">
             <NavGroup title="Workspace" open={sidebarOpen}>
-              <NavItem icon={History} label="Research history" open={sidebarOpen} active />
+              <NavItem icon={LayoutDashboard} label="Home / Orbit Canvas" open={sidebarOpen} active to="/" />
               <NavItem icon={BookMarked} label="Saved papers" open={sidebarOpen} />
               <NavItem icon={FolderKanban} label="Projects" open={sidebarOpen} />
               <NavItem icon={Search} label="Search & discovery" open={sidebarOpen} to="/search" />
-              <NavItem icon={PenLine} label="Writing workspace" open={sidebarOpen} to="/write" />
+              <NavItem icon={PenTool} label="Writing workspace" open={sidebarOpen} to="/write" />
               <NavItem icon={Library} label="Source library" open={sidebarOpen} to="/write" />
-              <NavItem icon={BarChart3} label="Data analysis" open={sidebarOpen} to="/analyze" />
-              <NavItem icon={Database} label="Data & Coding" open={sidebarOpen} to="/analysis" />
-              <NavItem icon={Repeat2} label="Converter Hub" open={sidebarOpen} to="/converter" />
-
+              <NavItem icon={BarChart2} label="Data analysis" open={sidebarOpen} to="/analyze" />
+              <NavItem icon={Terminal} label="Data & Coding" open={sidebarOpen} to="/analysis" />
+              <NavItem icon={Cloud} label="Export & Cloud Sync" open={sidebarOpen} to="/converter" />
             </NavGroup>
 
             {sidebarOpen && (
@@ -556,7 +556,7 @@ function ResearchWorkspace() {
                 const cls = cn("hub-action group absolute flex items-center gap-2.5 rounded-full border border-border bg-card p-2 pr-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md", action.position);
                 const inner = (
                   <>
-                    <span className="grid size-9 shrink-0 place-items-center rounded-full bg-secondary text-secondary-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground"><Icon className="size-4" /></span>
+                    <span className="grid size-9 shrink-0 place-items-center rounded-full bg-mint text-teal-ink transition-colors group-hover:bg-teal-deep group-hover:text-teal-deep-foreground"><Icon className="size-4" /></span>
                     <span className="hub-action-copy block min-w-0">
                       <span className="hub-action-label block truncate whitespace-nowrap text-[11px] font-semibold sm:text-xs">{action.label}</span>
                       <span className="hub-action-helper block truncate text-[10px] text-muted-foreground">{action.helper}</span>
