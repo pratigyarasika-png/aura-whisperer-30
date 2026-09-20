@@ -599,25 +599,25 @@ function AnalysisWorkspace() {
                 </>
               )}
             </div>
-          </section>
+          </ToolCard>
         )}
 
         {session.tab === "charts" && (
-          <section className="space-y-4">
+          <ToolCard icon={TrendingUp} title="Dynamic Auto-Charts" subtitle="Instant visualisations generated from your dataset">
             {active ? (
               <ChartsPanel dataset={active} />
             ) : (
               <p className="text-xs text-muted-foreground">Load a dataset first to generate charts.</p>
             )}
-          </section>
+          </ToolCard>
         )}
 
         {session.tab === "insights" && (
-          <section className="space-y-4">
+          <ToolCard icon={Sparkles} title="AI Statistical Summary" subtitle="Narratives, tables and anomaly checks from your data">
             <div className="flex flex-wrap items-center gap-2">
               <Button
                 size="sm"
-                className="h-9 rounded-full text-xs"
+                className="h-9 rounded-full bg-teal-deep text-xs text-teal-deep-foreground hover:bg-teal-deep/90"
                 disabled={!active || !!busy}
                 onClick={() => void callAi("narrative")}
               >
