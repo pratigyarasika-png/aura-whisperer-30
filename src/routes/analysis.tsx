@@ -447,7 +447,12 @@ function AnalysisWorkspace() {
                     aria-label="Page URL to scrape"
                     className="h-9 min-w-0 flex-1 rounded-full border border-input bg-background px-3 text-xs outline-none"
                   />
-                  <Button size="sm" className="h-9 rounded-full text-xs" onClick={() => void scrape()} disabled={!url.trim() || !!busy}>
+                  <Button
+                    size="sm"
+                    className="h-9 rounded-full bg-teal-deep text-xs text-teal-deep-foreground hover:bg-teal-deep/90"
+                    onClick={() => void scrape()}
+                    disabled={!url.trim() || !!busy}
+                  >
                     Scrape
                   </Button>
                 </div>
@@ -661,9 +666,36 @@ function AnalysisWorkspace() {
                 </p>
               )}
             </div>
-          </section>
+          </ToolCard>
         )}
       </main>
     </div>
+  );
+}
+
+function ToolCard({
+  icon: Icon,
+  title,
+  subtitle,
+  children,
+}: {
+  icon: typeof Terminal;
+  title: string;
+  subtitle: string;
+  children: ReactNode;
+}) {
+  return (
+    <section className="rise-in rounded-3xl border border-border bg-card p-4 shadow-sm sm:p-6">
+      <div className="mb-4 flex flex-wrap items-center gap-3">
+        <span className="grid size-8 shrink-0 place-items-center rounded-full bg-teal-soft text-teal-ink">
+          <Icon className="size-4" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <h2 className="font-display truncate text-base font-semibold">{title}</h2>
+          <p className="truncate text-[11px] text-muted-foreground">{subtitle}</p>
+        </div>
+      </div>
+      {children}
+    </section>
   );
 }
