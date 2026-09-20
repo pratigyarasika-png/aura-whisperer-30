@@ -63,6 +63,11 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-primary-ink: var(--primary-ink);
   --color-signal: var(--signal);
+  --color-mint: var(--mint);
+  --color-teal-soft: var(--teal-soft);
+  --color-teal-ink: var(--teal-ink);
+  --color-teal-deep: var(--teal-deep);
+  --color-teal-deep-foreground: var(--teal-deep-foreground);
   --color-engine-flash: var(--engine-flash);
   --color-engine-pro: var(--engine-pro);
   --color-engine-expert: var(--engine-expert);
@@ -113,6 +118,11 @@
   --sidebar-accent-foreground: oklch(0.24 0.04 185);
   --sidebar-border: oklch(0.85 0.025 175);
   --sidebar-ring: var(--user-accent);
+  --mint: #e6f4f1;
+  --teal-soft: #ccfbf1;
+  --teal-ink: #0f766e;
+  --teal-deep: #0f766e;
+  --teal-deep-foreground: #f0fdfa;
 }
 
 .dark {
@@ -155,6 +165,11 @@
   --sidebar-accent-foreground: oklch(0.94 0.008 95);
   --sidebar-border: oklch(0.31 0.025 215);
   --sidebar-ring: var(--user-accent);
+  --mint: oklch(0.30 0.035 185);
+  --teal-soft: oklch(0.33 0.05 185);
+  --teal-ink: oklch(0.82 0.1 175);
+  --teal-deep: oklch(0.72 0.13 175);
+  --teal-deep-foreground: oklch(0.16 0.03 185);
 }
 
 @layer base {
@@ -191,8 +206,10 @@
 .hub-action-right { right: 0; top: 50%; transform: translateY(-50%); }
 .hub-action-bottom { bottom: 1%; left: 50%; transform: translateX(-50%); }
 .hub-action-left { left: 0; top: 50%; transform: translateY(-50%); }
+.hub-action-nw { top: 14%; left: 14%; transform: translate(-50%, -50%); }
 .hub-action-top:hover, .hub-action-bottom:hover { transform: translateX(-50%) translateY(-2px); }
 .hub-action-right:hover, .hub-action-left:hover { transform: translateY(calc(-50% - 2px)); }
+.hub-action-nw:hover { transform: translate(calc(-50% - 2px), calc(-50% - 2px)); }
 
 .hub-action { max-width: min(14rem, 46%); }
 .mode-toggle { width: fit-content; max-width: 100%; align-self: center; }
@@ -255,6 +272,8 @@
   .hub-action-right:hover { transform: translate(calc(50% + 2px), -50%); }
   .hub-action-bottom:hover { transform: translate(-50%, calc(50% + 2px)); }
   .hub-action-left:hover { transform: translate(calc(-50% - 2px), -50%); }
+  .hub-action-nw { top: 16%; left: 16%; }
+  .hub-action-nw:hover { transform: translate(calc(-50% - 2px), calc(-50% - 2px)); }
 
   .hub-action > span:first-child { width: 1.75rem; height: 1.75rem; }
   .hub-action-copy { width: auto; }
